@@ -1,0 +1,1 @@
+{"version":3,"sources":["meteor://💻app/server/bootstrap.js"],"names":[],"mappings":";;;;;;;;AAAA,MAAM,CAAC,OAAO,CAAC,YAAY,EAC1B,CAAC,CAAC,4C","file":"/server/bootstrap.js","sourcesContent":["Meteor.startup(function () {\n});\n"]}
