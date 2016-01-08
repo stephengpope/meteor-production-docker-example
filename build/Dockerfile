@@ -20,3 +20,6 @@ RUN cd bundle/programs/server && npm install
 
 EXPOSE 80
 CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "bundle/main.js"]
+
+
+sed "s/dist/v0.10.40]*.[0-9]*.[0-9]*/1.1.1/g"
