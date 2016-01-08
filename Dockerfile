@@ -14,9 +14,9 @@ RUN mkdir /home/meteorapp
 
 WORKDIR /home/meteorapp
 
-ADD  build/bundle .
+ADD  build/bundle ./bundle
 
-RUN cd programs/server && npm install
+RUN cd bundle/programs/server && npm install
 
 EXPOSE 80
-CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "main.js"]
+CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "bundle/main.js"]
