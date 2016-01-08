@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+
+iron build
+
+NODE_EXTRACT_VERSION=$(cat bundle/README | grep Node.js | awk '$1 == "Node.js" {print $2}');
+
+echo $NODE_EXTRACT_VERSION;
+
+
