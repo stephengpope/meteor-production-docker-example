@@ -127,7 +127,7 @@ Mongo=Package.mongo.Mongo,Session=Package.session.Session,$=Package.jquery.$,jQu
 
 (function(){Template.__checkName("NotFound"),Template.NotFound=new Template("Template.NotFound",function(){var t=this;return HTML.Raw("<h1>Not Found</h1>")})}).call(this);
 
-(function(){Template.__checkName("Home"),Template.Home=new Template("Template.Home",function(){var e=this;return HTML.Raw('<div class="home">\n    <h1>Find me in app/client/templates/home/home</h1>\n  </div>')})}).call(this);
+(function(){Template.__checkName("Home"),Template.Home=new Template("Template.Home",function(){var e=this;return HTML.Raw('<div class="home">\n        <h1>HELLO WORLD</h1>\n    </div>')})}).call(this);
 
 (function(){HomeController=RouteController.extend({subscriptions:function(){},waitOn:function(){},data:function(){},onRun:function(){this.next()},onRerun:function(){this.next()},onBeforeAction:function(){this.next()},action:function(){this.render()},onAfterAction:function(){},onStop:function(){}})}).call(this);
 
