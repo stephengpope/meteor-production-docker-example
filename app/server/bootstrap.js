@@ -1,4 +1,4 @@
 Meteor.startup(function () {
 
-    console.log('up!')
+    console.log('!')
 });
