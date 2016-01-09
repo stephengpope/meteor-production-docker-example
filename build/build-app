@@ -3,12 +3,14 @@
 
 iron build
 tar czf bundle.tgz bundle
-rm -rf bundle
+
 
 NODE_EXTRACT_VERSION=$(cat bundle/README | grep Node.js | awk '$1 == "Node.js" {print $2}');
 
 sed -e "s/\/v[0-9]*.[0-9]*.[0-9]*/\/v$NODE_EXTRACT_VERSION/g" -e "s/\/node-v[0-9]*.[0-9]*.[0-9]*/\/node-v$NODE_EXTRACT_VERSION/g" Dockerfile > Dockerfile.new
 mv Dockerfile.new Dockerfile
+
+rm -rf bundle
 
 
 
