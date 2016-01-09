@@ -11,16 +11,17 @@ RUN curl https://nodejs.org/dist/v0.10.40/node-v0.10.40-linux-x64.tar.gz > /root
 RUN cd /usr/local && tar --strip-components 1 -xzf /root/node-linux-x64.tar.gz
 
 RUN npm install -g forever
+RUN npm install -g iron-meteor
 
 RUN mkdir /home/meteorapp
 
 WORKDIR /home/meteorapp
 
-ADD app ./app
+ADD . ./meteorapp
 
-RUN cd app && meteor build ../build --directory
+RUN cd meteorapp && iron build
 
-RUN cd build/bundle/programs/server && npm install
+RUN cd meteorapp/build/bundle/programs/server && npm install
 
 EXPOSE 80
-CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "build/bundle/main.js"]
+CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "meteorapp/build/bundle/main.js"]
