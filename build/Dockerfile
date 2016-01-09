@@ -14,7 +14,7 @@ RUN mkdir /home/meteorapp
 
 WORKDIR /home/meteorapp
 
-ADD  bundle.tgz ./bundle
+ADD  bundle.tgz .
 
 RUN cd bundle/programs/server && npm install
 
