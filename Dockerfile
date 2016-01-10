@@ -31,7 +31,7 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=/ST=/L=/O
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+#EXPOSE 80
 EXPOSE 443
 
 CMD service nginx start && forever --minUptime 1000 --spinSleepTime 1000 meteorapp/build/bundle/main.js
