@@ -32,6 +32,6 @@ RUN cd meteorapp/build/bundle/programs/server && npm install
 #COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-#EXPOSE 443
+#EXPOSE 443 service nginx start && 
 
 CMD forever --minUptime 1000 --spinSleepTime 1000 meteorapp/build/bundle/main.js
