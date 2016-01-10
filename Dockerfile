@@ -29,7 +29,7 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=/ST=/L=/O
 
 # Copy custom configuration file from the current directory
 RUN rm -f /etc/nginx/conf.d/default.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY build/default-ssl-termination.conf /etc/nginx/conf.d/default.conf
 
 #EXPOSE 80
 EXPOSE 443
