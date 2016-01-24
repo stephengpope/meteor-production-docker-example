@@ -23,9 +23,9 @@ RUN apt-get install curl -y \
 
   # Install the version of Node.js we need.
   && cd /home/meteorapp/meteorapp/build/bundle \
-  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > required-node-linux-x64.tar.gz' \
-  && cd /usr/local && tar --strip-components 1 -xzf required-node-linux-x64.tar.gz \
-  && rm required-node-linux-x64.tar.gz \
+  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz' \
+  && cd /usr/local && tar --strip-components 1 -xzf /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz \
+  && rm /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz \
 
   # Build the NPM packages needed for build
   && cd /home/meteorapp/meteorapp/build/bundle/programs/server \
