@@ -36,5 +36,6 @@ RUN apt-get install curl -y \
 RUN npm install -g forever
 
 EXPOSE 80
+ENV PORT 80
 
 CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "meteorapp/build/bundle/main.js"]
