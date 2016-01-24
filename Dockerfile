@@ -2,26 +2,38 @@ FROM ubuntu:14.04
 
 MAINTAINER Stephen Pope, spope@projectricochet.com
 
-RUN apt-get update -q
-RUN apt-get install curl -y
-
-RUN curl https://install.meteor.com/ | sh
-
-RUN curl https://nodejs.org/dist/v0.10.40/node-v0.10.40-linux-x64.tar.gz > /root/node-linux-x64.tar.gz
-RUN cd /usr/local && tar --strip-components 1 -xzf /root/node-linux-x64.tar.gz
-
-RUN npm install -g forever
-RUN npm install -g iron-meteor
-
 RUN mkdir /home/meteorapp
 
 WORKDIR /home/meteorapp
 
 ADD . ./meteorapp
 
-RUN cd meteorapp && iron build
+RUN apt-get update -q && apt-get clean
 
-RUN cd meteorapp/build/bundle/programs/server && npm install
+RUN apt-get install curl -y \
+  && (curl https://install.meteor.com/ | sh) \
+
+  # Build the app
+  && cd /home/meteorapp/meteorapp/app \
+  && meteor build ../build --directory \
+
+  # Install the version of Node.js we need.
+  && cd /home/meteorapp/meteorapp/build/bundle \
+  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > /root/node-linux-x64.tar.gz' \
+  && cd /usr/local && tar --strip-components 1 -xzf /root/node-linux-x64.tar.gz \
+  && rm /root/node-linux-x64.tar.gz \
+
+  && cd /home/meteorapp/meteorapp/build/bundle/programs/server \
+  && npm install \
+
+  # Get rid of Meteor. We're done with it.
+  && rm /usr/local/bin/meteor \
+  && rm -rf ~/.meteor \
+
+  #no longer need curl
+  && apt-get --purge autoremove curl -y
+
+RUN npm install -g forever
 
 EXPOSE 80
 CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "meteorapp/build/bundle/main.js"]
