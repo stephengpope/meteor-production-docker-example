@@ -8,21 +8,26 @@ WORKDIR /home/meteorapp
 
 ADD . ./meteorapp
 
+# Do basic updates
 RUN apt-get update -q && apt-get clean
 
+# Get curl in order to download curl
 RUN apt-get install curl -y \
+
+  # Install Meteor
   && (curl https://install.meteor.com/ | sh) \
 
-  # Build the app
+  # Build the Meteor app
   && cd /home/meteorapp/meteorapp/app \
   && meteor build ../build --directory \
 
   # Install the version of Node.js we need.
   && cd /home/meteorapp/meteorapp/build/bundle \
-  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > /root/node-linux-x64.tar.gz' \
-  && cd /usr/local && tar --strip-components 1 -xzf /root/node-linux-x64.tar.gz \
-  && rm /root/node-linux-x64.tar.gz \
+  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > node-linux-x64.tar.gz' \
+  && cd /usr/local && tar --strip-components 1 -xzf node-linux-x64.tar.gz \
+  && rm node-linux-x64.tar.gz \
 
+  # Build the NPM packages needed for build
   && cd /home/meteorapp/meteorapp/build/bundle/programs/server \
   && npm install \
 
