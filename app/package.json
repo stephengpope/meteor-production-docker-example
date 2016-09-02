@@ -1,0 +1,24 @@
+{
+  "name": "meteor-production-docker-example",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "meteor-node-stubs": "~0.2.0"
+  },
+  "description": "Microscope is a simple social news app that lets you share links, comment, and vote on them.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popestepheng/meteor-production-docker-example.git"
+  },
+  "author": "Project Ricochet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/popestepheng/meteor-production-docker-example/issues"
+  },
+  "homepage": "https://github.com/popestepheng/meteor-production-docker-example#readme"
+}
